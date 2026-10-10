@@ -1,0 +1,66 @@
+{
+  "_comment": "External pothole data sources. Set enabled:true and fill in a real dataset URL to add a council. See docs/DATA_SOURCES.md for how to find and map datasets.",
+  "sources": [
+    {
+      "id": "fixmystreet",
+      "name": "FixMyStreet",
+      "type": "fixmystreet",
+      "enabled": true,
+      "baseUrl": "https://www.fixmystreet.com",
+      "homepage": "https://www.fixmystreet.com/",
+      "categories": ["Potholes", "Pothole", "Potholes and road surface", "Road surface", "Road defects"],
+      "licence": "Report content © the reporters, published by mySociety",
+      "attribution": "Reports from FixMyStreet by mySociety"
+    },
+    {
+      "id": "example-arcgis-council",
+      "name": "Example County Council – highway defects (ArcGIS)",
+      "type": "arcgis",
+      "enabled": false,
+      "authority": "Example County Council",
+      "url": "https://services.arcgis.com/REPLACE_ME/arcgis/rest/services/Highway_Defects/FeatureServer/0",
+      "where": "DEFECT_TYPE = 'Pothole'",
+      "fields": {
+        "id": "OBJECTID",
+        "title": "LOCATION",
+        "description": "DESCRIPTION",
+        "status": "STATUS",
+        "reportedAt": "REPORTED_DATE"
+      },
+      "statusMap": { "Completed": "fixed", "Repaired": "fixed", "Open": "open" },
+      "licence": "Open Government Licence v3.0",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0"
+    },
+    {
+      "id": "example-csv-council",
+      "name": "Example Borough Council – pothole repairs (CSV)",
+      "type": "csv",
+      "enabled": false,
+      "authority": "Example Borough Council",
+      "url": "https://data.example.gov.uk/REPLACE_ME/pothole-repairs.csv",
+      "fields": {
+        "id": "Job Number",
+        "easting": "Easting",
+        "northing": "Northing",
+        "title": "Street",
+        "status": "Status",
+        "reportedAt": "Date Reported"
+      },
+      "filter": { "field": "Defect Type", "contains": ["pothole"] },
+      "licence": "Open Government Licence v3.0",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0"
+    },
+    {
+      "id": "example-geojson-council",
+      "name": "Example City Council – road defects (GeoJSON)",
+      "type": "geojson",
+      "enabled": false,
+      "authority": "Example City Council",
+      "url": "https://opendata.example.gov.uk/REPLACE_ME/road-defects.geojson",
+      "fields": { "id": "defect_id", "title": "street_name", "status": "status", "reportedAt": "reported" },
+      "filter": { "field": "category", "values": ["Pothole"] },
+      "licence": "Open Government Licence v3.0",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0"
+    }
+  ]
+}

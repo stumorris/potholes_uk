@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data sources – Potholes UK</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Potholes UK</a>
+    <nav>
+      <a href="/">Map</a>
+      <a href="/liability"><span class="long">Damage &amp; claims</span><span class="short">Claims</span></a>
+      <a href="/sources" aria-current="page"><span class="long">Data sources</span><span class="short">Data</span></a>
+    </nav>
+  </header>
+  <main class="article">
+    <h1>Where the data comes from</h1>
+    <p class="lede">The map combines reports made here with public data from councils and other services. There's no single national pothole database, so we add sources council by council as they publish open data.</p>
+    <div id="sources"><p class="hint">Loading…</p></div>
+
+    <h2>Your council isn't here?</h2>
+    <p>Many councils publish highway defect data on their open data portal or <a href="https://www.data.gov.uk/">data.gov.uk</a>; others will release it in response to a Freedom of Information request. If you find a dataset, <a href="https://github.com/stumorris/potholes_uk/issues">tell us</a> and we'll add it.</p>
+    <p class="small">Council data is used under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a> unless stated. Council lookup uses <a href="https://postcodes.io/">postcodes.io</a> (ONS data, OGL). Map tiles © OpenStreetMap contributors.</p>
+  </main>
+  <script src="/sources.js"></script>
+</body>
+</html>

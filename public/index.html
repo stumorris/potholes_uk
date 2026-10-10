@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Potholes UK – live map</title>
+  <meta name="description" content="Report potholes, see every recorded pothole on a live UK map, and find out who is liable for damage to your vehicle.">
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/vendor/markercluster/MarkerCluster.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="map-page">
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Potholes UK</a>
+    <nav>
+      <a href="/" aria-current="page">Map</a>
+      <a href="/liability"><span class="long">Damage &amp; claims</span><span class="short">Claims</span></a>
+      <a href="/sources"><span class="long">Data sources</span><span class="short">Data</span></a>
+    </nav>
+  </header>
+
+  <main class="map-layout">
+    <aside class="panel" id="panel">
+      <section id="browse">
+        <button class="btn btn-primary btn-block" id="start-report">Report a pothole</button>
+        <p class="live-status" id="live-status"><span class="dot"></span><span>Connecting…</span></p>
+
+        <h2 class="panel-heading">Show</h2>
+        <fieldset class="filters" id="source-filters"><legend class="sr-only">Sources</legend></fieldset>
+        <fieldset class="filters">
+          <legend class="sr-only">Status</legend>
+          <label><input type="checkbox" name="status" value="open" checked> Open</label>
+          <label><input type="checkbox" name="status" value="fixed"> Fixed</label>
+        </fieldset>
+
+        <p class="count" id="count"></p>
+        <p class="hint">Zoom in to street level to pull the latest reports from FixMyStreet and council feeds for that area.</p>
+
+        <div class="callout">
+          <strong>Damaged your car?</strong>
+          <p>Councils can be liable for pothole damage. <a href="/liability">Read how to claim</a>.</p>
+        </div>
+      </section>
+
+      <section id="report-form-section" hidden>
+        <h2 class="panel-heading">Report a pothole</h2>
+        <form id="report-form" novalidate>
+          <div class="step">
+            <p class="step-label">1. Location</p>
+            <p class="hint" id="loc-hint">Tap the map where the pothole is, or</p>
+            <button type="button" class="btn btn-secondary" id="use-location">Use my location</button>
+            <p class="loc-readout" id="loc-readout"></p>
+            <p class="authority" id="authority" hidden></p>
+          </div>
+
+          <label class="field">2. Short title
+            <input name="title" maxlength="120" placeholder="e.g. Deep pothole by the bus stop">
+          </label>
+
+          <fieldset class="field">
+            <legend>3. How bad is it?</legend>
+            <div class="seg">
+              <label><input type="radio" name="severity" value="minor"><span>Minor</span></label>
+              <label><input type="radio" name="severity" value="moderate" checked><span>Moderate</span></label>
+              <label><input type="radio" name="severity" value="severe"><span>Severe</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">Approx. depth (mm) <span class="optional">optional</span>
+            <input name="depthMm" type="number" inputmode="numeric" min="1" max="999" placeholder="e.g. 50">
+          </label>
+
+          <label class="field">Details <span class="optional">optional</span>
+            <textarea name="description" rows="3" maxlength="2000" placeholder="Width, lane, nearby landmark…"></textarea>
+          </label>
+
+          <label class="field">Photos <span class="optional">up to 4</span>
+            <input name="photos" id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+          </label>
+          <div class="previews" id="previews"></div>
+          <p class="hint small">Location data is stripped from photos before they're saved. Put something for scale (a shoe, a coin) in the shot if you can.</p>
+
+          <p class="error" id="form-error" role="alert" hidden></p>
+          <div class="actions">
+            <button type="button" class="btn btn-secondary" id="cancel-report">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submit-report">Submit report</button>
+          </div>
+        </form>
+      </section>
+    </aside>
+
+    <div id="map" role="region" aria-label="Map of reported potholes"></div>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/markercluster/leaflet.markercluster.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
